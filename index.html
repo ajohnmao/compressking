@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖片壓縮工具</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>圖片壓縮工具</h1>
+        
+        <div class="upload-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            <div class="upload-content">
+                <svg viewBox="0 0 24 24" width="48" height="48">
+                    <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                <p>點擊或拖放最多100張圖片至此處</p>
+            </div>
+        </div>
+
+        <div class="settings">
+            <div class="setting-item">
+                <label>壓縮質量: <span id="qualityValue">70%</span></label>
+                <input type="range" id="quality" min="0" max="100" value="70">
+            </div>
+            <div class="setting-item">
+                <label>輸出格式:</label>
+                <div class="format-options">
+                    <label class="format-option">
+                        <input type="radio" name="format" value="image/jpeg" checked>
+                        <span>JPEG</span>
+                    </label>
+                    <label class="format-option">
+                        <input type="radio" name="format" value="image/png">
+                        <span>PNG</span>
+                    </label>
+                    <label class="format-option">
+                        <input type="radio" name="format" value="image/webp">
+                        <span>WebP</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="imageList" class="image-list" style="display: none;"></div>
+
+        <div class="batch-controls" style="display: none;">
+            <button id="compressAllBtn" class="compress-all-btn">開始批量壓縮</button>
+            <button id="downloadAllBtn" class="download-all-btn" style="display: none;">下載所有壓縮圖片</button>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <p class="progress-text">已處理: <span id="processedCount">0</span> / <span id="totalCount">0</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
